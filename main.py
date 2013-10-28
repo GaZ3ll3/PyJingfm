@@ -36,9 +36,6 @@ init_headers = {
     "Accept-Encoding": "gzip, deflate",
     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", }
 
-email = 'test@gmail.com'
-passwd = 'pwd'
-
 
 class JingFM:
     def __init__(self, email, passwd):
@@ -104,6 +101,8 @@ class JingFM:
 
 if __name__ == "__main__":
     while (True):
+        email = raw_input("email:")
+        passwd = raw_input("password:")
         c = JingFM(email, passwd)
         c.fetch_pls('piano')
         c.fetch_track_infos()
