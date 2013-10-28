@@ -11,7 +11,7 @@ Install mplayer.
 
 #Use#
 
-Search username and pwd in main.py. Replace by your username and password in the main.py.
+Search email and pwd in main.py. Replace by your email and password for logging into Jing.fm in the main.py.
 
 In terminal, type python main.py
 
