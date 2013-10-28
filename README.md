@@ -3,19 +3,19 @@ PyJingfm
 
 simple CL tool for jingfm.
 
-=Prelude=
+#Prelude#
 
 Install requests for python.
 
 Install mplayer.
 
-=Use=
+#Use#
 
 Search username and pwd in main.py. Replace by your username and password in the main.py.
 
 In terminal, type python main.py
 
-=Issue=
+#Issue#
 
 Q: mplayer prompts something with  'socket...'
 
