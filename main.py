@@ -1,26 +1,26 @@
 """
 Created on June 19th, 2013. via. Sublime Text 2
 
-@author: lurker
+@author: lurker-Yimin
 """
 
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import urllib2, httplib
-import string
+# import urllib2, httplib
+# import string
 import json
 import requests
-import re
+# import re
 import sys
-import os
+# import os
 
 url_create = 'http://jing.fm/api/v1/sessions/create'
 url_fetch_pls = 'http://jing.fm/api/v1/search/jing/fetch_pls'
 url_fetch_track_infos = 'http://jing.fm/api/v1/music/fetch_track_infos'
 url_surl = 'http://jing.fm/api/v1/media/song/surl'
 
-fig_base_address = 'img.jing.fm/album/'
+fig_base_address = 'http://img.jing.fm/album/'
 
 host = "jing.fm"
 payload = {
@@ -63,7 +63,7 @@ class JingFM:
         sys.exit()
 
     def fetch_pls(self, key):
-        self.limit = 2;
+        self.limit = 5;
         self.params_fetch_pls = {'mt': '', 'ps': self.limit, 'q': key, 'ss': 'true', 'st': 0, 'tid': 0, 'u': self.uid}
         self.resp_fetch_pls = requests.post(url_fetch_pls, headers=self.headers, params=self.params_fetch_pls)
         json_fetch_pls = json.loads(self.resp_fetch_pls.content)
@@ -92,12 +92,10 @@ class JingFM:
         for i in xrange(self.limit):
             self.params_surl = {'mid': self.mid_group[i], 'type': 'NO'}
             self.resp_surl = requests.post(url_surl, headers=self.headers, params=self.params_surl)
+            print self.resp_surl.content
             json_surl = json.loads(self.resp_surl.content)
             self.surl.append(json_surl['result'])
         return self.surl
-        #print self.fid_group
-        #print self.track_infos
-
 
 if __name__ == "__main__":
     while (True):
@@ -105,7 +103,7 @@ if __name__ == "__main__":
         passwd = raw_input("password:")
         c = JingFM(email, passwd)
         c.fetch_pls('piano')
-        c.fetch_track_infos()
+        # c.fetch_track_infos()
         song_list = c.surl()
         bashCommand = "mplayer -really-quiet "
         for x in range(len(song_list)):
@@ -115,7 +113,3 @@ if __name__ == "__main__":
 
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output = process.communicate()[0]
-
-
-
-
